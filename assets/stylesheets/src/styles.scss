@@ -11,6 +11,13 @@
   transform: translateY(-50%);
   margin:0 auto;
 
+  #keys, #operators {
+    ::selection {
+      background-color: transparent;
+      color:inherit;
+    }
+  }
+
   #result {
     background-color: #FFF;
     height:1.3*$key-height;
@@ -63,6 +70,13 @@
       line-height: $key-height;
       font-weight: 300s;
 
+    }
+  }
+
+  .input {
+    ::selection {
+      background-color: transparent;
+      color:inherit; 
     }
   }
 

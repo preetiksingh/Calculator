@@ -8,6 +8,9 @@ body {
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto; }
+  #calculator #keys ::selection, #calculator #operators ::selection {
+    background-color: transparent;
+    color: inherit; }
   #calculator #result {
     background-color: #FFF;
     height: 20.8vmin;
@@ -46,5 +49,8 @@ body {
       margin: 0 -15px;
       line-height: 16vmin;
       font-weight: 300s; }
+  #calculator .input ::selection {
+    background-color: transparent;
+    color: inherit; }
 
 /*# sourceMappingURL=styles.css.map */
