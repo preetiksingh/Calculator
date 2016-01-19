@@ -62,7 +62,7 @@ var Calci = {
       }
       } else {
         lastChar = Calci.getLastChar();
-        if (['+', '-', '*', '/'].indexOf(lastChar) != -1) {
+        if (Calci.checkLastCharIsOperator()) {
           Calci.handleDelete();
         }
           Calci.handleInput(operator);
@@ -76,6 +76,9 @@ var Calci = {
   },
 
   evaluateResult: function() {
+    if(Calci.checkLastCharIsOperator()){
+      Calci.handleDelete();
+    }
     $('#result').html(eval($('#preview').html()));
   },
 
@@ -105,6 +108,10 @@ var Calci = {
     } else {
       return str[str.length-1];
     }
+  },
+  checkLastCharIsOperator: function() {
+    lastChar = Calci.getLastChar();
+    return (['+', '-', '*', '/'].indexOf(lastChar) != -1);
   }
 };
 $(document).ready(function() { 
