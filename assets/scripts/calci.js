@@ -22,6 +22,10 @@ var Calci = {
         Calci.handleInput(digit);
     });
    });
+
+    $(document).bind('keyup' , 'backspace', function(){
+      Calci.handleDelete();
+    });
   },
   handleInput: function(input) {
     $('#preview').html($('#preview').html() + input);
