@@ -4,7 +4,7 @@ var Calci = {
       if(this.dataset.keyType == "digit") {
         Calci.handleInput(this.dataset.digit);
       } else if(this.dataset.keyType == "operator") {
-        Calci.handleInput(this.dataset.operator);
+        Calci.handleOperator(this.dataset.operator);
       } else if(this.dataset.keyType=="delete") {
         Calci.handleDelete();
       } else if(this.dataset.keyType == "equals") {
@@ -56,9 +56,18 @@ var Calci = {
   },
 
   handleOperator: function(operator) {
-    handleInput(operator);
-  },
-
+    if ($('#preview').html().length == 0){
+      if (operator == '-') { 
+        Calci.handleInput('-');
+      }
+      } else {
+        lastChar = Calci.getLastChar();
+        if (['+', '-', '*', '/'].indexOf(lastChar) != -1) {
+          Calci.handleDelete();
+        }
+          Calci.handleInput(operator);
+      }
+    },
   handleDelete: function() {
     $('#preview').html($('#preview').html().slice(0,-1));
     if ($('#preview').html().length == 0) {
@@ -74,6 +83,10 @@ var Calci = {
     $('#result').html('');
   },
 
+  clearPreview: function() {
+    $('#preview').html('');
+  },
+
  getLastNumber: function() {
       str = $('#preview').html();
       regexp = /[+\-*\/]([0-9.])*$/
@@ -83,7 +96,16 @@ var Calci = {
       } else {
         return matches[0].slice(1);
       }
+    },
+
+  getLastChar: function(){
+    str = $('#preview').html();
+    if (str.length == 0) {
+      return str;
+    } else {
+      return str[str.length-1];
     }
+  }
 };
 $(document).ready(function() { 
  Calci.init();
